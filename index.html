@@ -641,19 +641,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:54px clamp(20px
 <script>
 /* ── PRODUCTS DATA ─────────────────── */
 const PRODS = [
-  {
-  id:{
-  id:'B0DTJ3RL5J',
-  name:'CureSkin Scalp Massager',
-  desc:'Shampoo brush that exfoliates, removes dandruff & boosts hair growth 🧖 TikTok fave!',
-  price:'₹299',
-  rat:4.3,
-  rev:'2.1K',
-  cat:'Beauty',
-  img:'https://m.media-amazon.com/images/I/71gedmM6o3L._SL1500_.jpg',
-  b:'v',
-  bl:'🔥 Viral',
-},
+  {id:'B0DTJ3RL5J',name:'CureSkin Scalp Massager',  desc:'Exfoliating shampoo brush that removes dandruff & boosts hair growth 🧖 TikTok fave!', price:'₹299',  rat:4.3,rev:'2.1K', cat:'Beauty', img:'https://m.media-amazon.com/images/I/71gedmM6o3L._SL1500_.jpg', em:'🪮',b:'v',bl:'🔥 Viral'},
+  {id:'B0CHX1QBCH',name:'Galaxy Star Projector',    desc:'Transform your ceiling into a dreamy galaxy ✨ TikTok made everyone buy this.',   price:'₹999',  rat:4.7,rev:'12.4K',cat:'Decor',  em:'🌌',b:'v',bl:'🔥 Viral'},
   {id:'B09G9FPHY6',name:'Mini Wireless Speaker',    desc:'Crystal-clear sound in a pocket-sized body. Take the party anywhere!',           price:'₹1,299',rat:4.5,rev:'8.2K', cat:'Tech',   em:'🔊',b:'n',bl:'⚡ New'},
   {id:'B08G5PTCRH',name:'Gua Sha Facial Set',       desc:'Korean beauty secret for glowing, sculpted skin in 5 minutes 💆',               price:'₹549',  rat:4.8,rev:'23K',  cat:'Beauty', em:'💎',b:'l',bl:'💜 Loved'},
   {id:'B0CJXF94KK',name:'Retro Lava Lamp',          desc:'Groovy pastel vibes for your desk or bedside. Instant aesthetic upgrade.',       price:'₹799',  rat:4.6,rev:'5.7K', cat:'Decor',  em:'🫧',b:'v',bl:'🔥 Viral'},
@@ -701,9 +690,12 @@ function azon(id){window.open(url(id),'_blank','noopener')}
 function cardH(p){
   const s='★'.repeat(Math.floor(p.rat))+(p.rat%1>=.5?'½':'');
   const bc={v:'bv',n:'bn',l:'bl',t:'bt'}[p.b]||'';
+  const imgHTML = p.img
+    ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+    : `<div class="ci-inner">${p.em}</div>`;
   return`<div class="pcard rv" onclick="azon('${p.id}')">
     ${p.b?`<div class="pbadge ${bc}">${p.bl}</div>`:''}
-   <div class="ci">${p.img ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">` : `<div class="ci-inner">${p.em}</div>`}</div>
+    <div class="ci">${imgHTML}</div>
     <div class="cb">
       <div class="ccat">${p.cat}</div>
       <div class="cname">${p.name}</div>
@@ -726,8 +718,11 @@ function catH(c,page){
 }
 
 function carH(p){
+  const imgHTML = p.img
+    ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+    : p.em;
   return`<a class="cc2" href="${url(p.id)}" target="_blank" rel="noopener">
-    <div class="cc2-img">${p.em}</div>
+    <div class="cc2-img">${imgHTML}</div>
     <div class="cc2-body"><div class="cc2-name">${p.name}</div><div class="cc2-price">${p.price}</div></div>
   </a>`;
 }
