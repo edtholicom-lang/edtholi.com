@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ═══════════════════════════════════════════════
+     edtholi.com — "Take it, it's yours."
+     Gen-Z Aesthetic Amazon Affiliate Website
+     Light Pastel · Editorial · Glassmorphism
+════════════════════════════════════════════════ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="edtholi — Trending Amazon finds you'll love. Viral gadgets, aesthetic home items, and everyday essentials.">
+<title>edtholi — Take it, it's yours.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── DESIGN TOKENS ─────────────────────── */
+:root {
+  --peach:    #FFBFA3;
+  --blush:    #FFD6E0;
+  --lav:      #C9B8FF;
+  --sky:      #B8DEFF;
+  --mint:     #B8F0DC;
+  --butter:   #FFF0B8;
+  --coral:    #FF7B6B;
+  --grape:    #7C4DFF;
+  --ink:      #1A1028;
+  --ink2:     #3D2E52;
+  --muted:    #8878A8;
+  --light:    #FDF8FF;
+  --card-bg:  rgba(255,255,255,0.75);
+  --border:   rgba(180,150,220,0.18);
+  --glass:    rgba(255,255,255,0.58);
+  --grad-hero:linear-gradient(135deg,#FFF0F8 0%,#F0EEFF 50%,#EEF8FF 100%);
+  --grad-cta: linear-gradient(135deg,#7C4DFF 0%,#FF7B6B 100%);
+  --grad-1:   linear-gradient(135deg,#FF7B6B,#FF9F9F);
+  --grad-2:   linear-gradient(135deg,#7C4DFF,#C084FC);
+  --grad-3:   linear-gradient(135deg,#06B6D4,#6EE7B7);
+  --grad-4:   linear-gradient(135deg,#F59E0B,#FBBF24);
+  --grad-5:   linear-gradient(135deg,#EC4899,#F472B6);
+  --sh-sm:    0 4px 20px rgba(124,77,255,0.08);
+  --sh-md:    0 12px 40px rgba(124,77,255,0.14);
+  --sh-lg:    0 24px 64px rgba(124,77,255,0.18);
+  --r-card:   24px;
+  --r-btn:    50px;
+  --nav-h:    66px;
+  --ff-disp:  'Playfair Display',Georgia,serif;
+  --ff-body:  'Plus Jakarta Sans',sans-serif;
+  --ff-hand:  'Dancing Script',cursive;
+}
+
+/* ─── RESET ─────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--light);color:var(--ink);overflow-x:hidden;cursor:none}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--ff-body)}
+img{max-width:100%;display:block}
+::selection{background:var(--lav);color:var(--ink)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--light)}
+::-webkit-scrollbar-thumb{background:var(--lav);border-radius:3px}
+
+/* Noise grain */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.5}
+
+/* ─── CUSTOM CURSOR ─────────────────────── */
+#cur{position:fixed;width:11px;height:11px;background:var(--grape);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:multiply}
+#curR{position:fixed;width:38px;height:38px;border:2px solid var(--grape);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease,width .25s,height .25s;opacity:.45}
+#cur.h{width:18px;height:18px;background:var(--coral)}
+#curR.h{width:54px;height:54px;opacity:.18}
+
+/* ─── ANIMATED BLOBS ────────────────────── */
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.32;pointer-events:none;z-index:0;animation:blobF 14s ease-in-out infinite}
+@keyframes blobF{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-28px) scale(1.07)}66%{transform:translate(-18px,24px) scale(.94)}}
+
+/* ─── STICKY NAV ────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,52px);background:rgba(253,248,255,.84);backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 28px rgba(124,77,255,.1)}
+
+.nav-logo{display:flex;align-items:baseline;gap:5px}
+.nav-logo-main{font-family:var(--ff-disp);font-size:1.5rem;font-weight:900;background:var(--grad-cta);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px}
+.nav-logo-tag{font-family:var(--ff-hand);font-size:.77rem;color:var(--muted);white-space:nowrap}
+
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:600;color:var(--ink2);padding:7px 13px;border-radius:var(--r-btn);transition:background .2s,color .2s}
+.nav-links a:hover{background:var(--blush);color:var(--grape)}
+
+.nav-right{display:flex;align-items:center;gap:10px}
+.search-box{display:flex;align-items:center;gap:7px;background:var(--glass);border:1.5px solid var(--border);border-radius:var(--r-btn);padding:8px 14px;max-width:200px;transition:border-color .2s,box-shadow .2s}
+.search-box:focus-within{border-color:var(--lav);box-shadow:0 0 0 3px rgba(124,77,255,.1)}
+.search-box input{border:none;background:none;outline:none;font-family:var(--ff-body);font-size:.8rem;color:var(--ink);width:115px}
+.search-box input::placeholder{color:var(--muted)}
+
+.btn-nc{background:var(--grad-cta);color:white;border:none;padding:9px 20px;border-radius:var(--r-btn);font-size:.8rem;font-weight:700;box-shadow:0 4px 16px rgba(124,77,255,.3);transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.btn-nc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,77,255,.4)}
+
+.ham{display:none;flex-direction:column;gap:5px;padding:4px;border:none;background:none}
+.ham span{width:22px;height:2px;background:var(--ink2);border-radius:2px;transition:.3s;display:block}
+
+/* ─── MOBILE MENU ───────────────────────── */
+.mob-nav{position:fixed;inset:0;z-index:998;background:rgba(253,248,255,.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mob-nav.open{transform:translateX(0)}
+.mob-nav a{font-family:var(--ff-disp);font-size:1.9rem;font-weight:700;color:var(--ink2);transition:color .2s}
+.mob-nav a:hover{color:var(--grape)}
+.mob-cls{position:absolute;top:20px;right:22px;background:none;border:none;font-size:1.5rem;color:var(--ink2)}
+
+/* ─── PAGE SYSTEM ───────────────────────── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+.ptabs{display:none;flex-wrap:wrap;gap:8px;justify-content:center;padding:calc(var(--nav-h) + 22px) 16px 20px;background:var(--grad-hero)}
+.ptabs.show{display:flex}
+.ptab{background:var(--glass);border:1.5px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:var(--r-btn);font-size:.78rem;font-weight:600;transition:all .2s}
+.ptab:hover,.ptab.active{background:var(--grad-cta);color:white;border-color:transparent;box-shadow:0 4px 16px rgba(124,77,255,.25)}
+
+/* ─── HERO ──────────────────────────────── */
+.hero{min-height:100vh;padding:calc(var(--nav-h) + 56px) clamp(20px,5vw,72px) 72px;background:var(--grad-hero);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;position:relative;overflow:hidden}
+.b1{width:420px;height:420px;background:var(--blush);top:-80px;right:-60px;animation-delay:0s}
+.b2{width:320px;height:320px;background:var(--lav);bottom:60px;left:-80px;animation-delay:-5s}
+.b3{width:260px;height:260px;background:var(--sky);top:35%;right:14%;animation-delay:-9s}
+
+.hero-l{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1.5px solid var(--border);border-radius:var(--r-btn);padding:7px 16px;font-size:.74rem;font-weight:700;color:var(--grape);letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;backdrop-filter:blur(12px);animation:fup .6s ease both}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--coral);animation:pulseD 2s ease infinite}
+@keyframes pulseD{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+
+.hero h1{font-family:var(--ff-disp);font-size:clamp(2.3rem,5.5vw,4.1rem);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:18px;animation:fup .6s ease .1s both}
+.hero h1 em{font-style:italic;background:var(--grad-cta);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(.94rem,1.5vw,1.08rem);color:var(--muted);line-height:1.72;max-width:440px;margin-bottom:34px;animation:fup .6s ease .2s both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fup .6s ease .3s both}
+
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--grad-cta);color:white;border:none;padding:15px 30px;border-radius:var(--r-btn);font-size:.94rem;font-weight:700;box-shadow:0 8px 28px rgba(124,77,255,.33);transition:transform .25s,box-shadow .25s;text-decoration:none}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(124,77,255,.44)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:var(--glass);color:var(--ink2);border:1.5px solid var(--border);padding:14px 26px;border-radius:var(--r-btn);font-size:.9rem;font-weight:600;backdrop-filter:blur(10px);transition:all .2s;text-decoration:none}
+.btn-o:hover{background:var(--blush);border-color:var(--blush);color:var(--grape)}
+
+.hero-stats{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap;animation:fup .6s ease .4s both}
+.stat .n{font-family:var(--ff-disp);font-size:1.75rem;font-weight:900;background:var(--grad-cta);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat .l{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+
+.hero-r{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;animation:fup .7s ease .2s both}
+.h-float{position:absolute;top:-18px;right:-12px;background:var(--grad-1);color:white;font-size:.7rem;font-weight:800;padding:6px 14px;border-radius:var(--r-btn);box-shadow:0 4px 16px rgba(255,123,107,.4);animation:fy 3s ease-in-out infinite;z-index:2}
+@keyframes fy{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.hc{background:var(--card-bg);border:1.5px solid var(--border);border-radius:var(--r-card);padding:20px 16px;text-align:center;backdrop-filter:blur(18px);box-shadow:0 8px 32px rgba(60,20,100,.10);transition:transform .3s cubic-bezier(.34,1.56,.64,1);cursor:pointer}
+.hc:hover{transform:translateY(-7px) rotate(-1.5deg)}
+.hc:nth-child(3){transform:translateY(18px)}
+.hc:nth-child(3):hover{transform:translateY(11px) rotate(1.5deg)}
+.hc:nth-child(5){transform:translateY(-12px)}
+.hc:nth-child(5):hover{transform:translateY(-19px) rotate(-1.5deg)}
+.hc .e{font-size:2.9rem;margin-bottom:9px}
+.hc .nm{font-size:.77rem;font-weight:700;color:var(--ink);margin-bottom:2px}
+.hc .pr{font-size:.7rem;color:var(--grape);font-weight:800}
+
+@keyframes fup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* ─── SECTIONS ──────────────────────────── */
+section{padding:76px clamp(20px,5vw,72px);max-width:1280px;margin:0 auto}
+.sec-lbl{display:inline-block;font-size:.69rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--grape);margin-bottom:8px}
+.sec-t{font-family:var(--ff-disp);font-size:clamp(1.65rem,3.5vw,2.5rem);font-weight:900;letter-spacing:-1.5px;color:var(--ink);margin-bottom:6px;line-height:1.15}
+.sec-t em{font-style:italic;color:var(--coral)}
+.sec-s{font-size:.88rem;color:var(--muted);margin-bottom:34px}
+
+/* ─── REVEAL ────────────────────────────── */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ─── PRODUCT GRID & CARD ───────────────── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:20px}
+.pgrid.mason .pcard:nth-child(3n+2) .ci{height:200px}
+.pgrid.mason .pcard:nth-child(3n)   .ci{height:245px}
+
+.pcard{background:var(--card-bg);border:1.5px solid var(--border);border-radius:var(--r-card);overflow:hidden;backdrop-filter:blur(20px);box-shadow:var(--sh-sm);transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;cursor:pointer;position:relative}
+.pcard:hover{transform:translateY(-10px) scale(1.01);box-shadow:var(--sh-lg)}
+.pcard:hover .ci-inner{transform:scale(1.07)}
+
+.pbadge{position:absolute;top:13px;left:13px;z-index:2;font-size:.64rem;font-weight:800;padding:5px 11px;border-radius:var(--r-btn);letter-spacing:.4px;text-transform:uppercase}
+.bv{background:var(--grad-1);color:white}
+.bn{background:var(--grad-2);color:white}
+.bl{background:var(--grad-5);color:white}
+.bt{background:var(--grad-4);color:var(--ink)}
+
+.ci{height:222px;overflow:hidden;background:linear-gradient(135deg,#FFF0F8,#F0EEFF);display:flex;align-items:center;justify-content:center}
+.ci-inner{font-size:5.5rem;transition:transform .4s ease;line-height:1;user-select:none}
+
+.cb{padding:17px 17px 19px}
+.ccat{font-size:.64rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--grape);margin-bottom:4px}
+.cname{font-family:var(--ff-disp);font-size:.97rem;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:5px}
+.cdesc{font-size:.77rem;color:var(--muted);line-height:1.55;margin-bottom:12px}
+.cmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.stars{font-size:.77rem;color:#F59E0B;letter-spacing:1px}
+.rtext{font-size:.69rem;color:var(--muted);margin-left:3px}
+.cprice{font-family:var(--ff-disp);font-size:1.03rem;font-weight:900;color:var(--ink)}
+
+.btn-amz{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px;background:var(--grad-cta);color:white;border:none;border-radius:16px;font-size:.81rem;font-weight:700;box-shadow:0 4px 16px rgba(124,77,255,.22);transition:transform .2s,box-shadow .2s,opacity .2s;text-decoration:none}
+.btn-amz:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(124,77,255,.35);opacity:.92}
+
+/* ─── CATEGORY CARDS ────────────────────── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:16px}
+.ccard{background:var(--card-bg);border:1.5px solid var(--border);border-radius:var(--r-card);padding:30px 20px;text-align:center;backdrop-filter:blur(20px);box-shadow:var(--sh-sm);cursor:pointer;text-decoration:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;position:relative;overflow:hidden;display:block}
+.ccard::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:var(--r-card)}
+.ccard:hover{transform:translateY(-8px);box-shadow:var(--sh-md)}
+.ccard:hover::before{opacity:1}
+.cp::before{background:linear-gradient(135deg,rgba(255,191,163,.22),rgba(255,214,224,.22))}
+.cg::before{background:linear-gradient(135deg,rgba(201,184,255,.22),rgba(124,77,255,.1))}
+.cc::before{background:linear-gradient(135deg,rgba(255,123,107,.15),rgba(255,214,224,.15))}
+.cm::before{background:linear-gradient(135deg,rgba(184,240,220,.25),rgba(184,222,255,.18))}
+.cs::before{background:linear-gradient(135deg,rgba(184,222,255,.25),rgba(201,184,255,.15))}
+.cb2::before{background:linear-gradient(135deg,rgba(255,240,184,.3),rgba(255,191,163,.18))}
+.ci2{font-size:2.5rem;margin-bottom:12px;display:block;position:relative}
+.cname2{font-family:var(--ff-disp);font-size:.88rem;font-weight:700;color:var(--ink);position:relative;margin-bottom:3px}
+.ccount{font-size:.7rem;color:var(--muted);position:relative}
+
+/* ─── CAROUSEL ──────────────────────────── */
+.car-outer{position:relative;overflow:hidden}
+.car-track{display:flex;gap:16px;animation:scroll 26s linear infinite;width:max-content;padding:8px 20px 16px}
+.car-track:hover{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.car-outer::before,.car-outer::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.car-outer::before{left:0;background:linear-gradient(to right,var(--light),transparent)}
+.car-outer::after{right:0;background:linear-gradient(to left,var(--light),transparent)}
+
+.cc2{width:172px;flex-shrink:0;background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;backdrop-filter:blur(20px);box-shadow:var(--sh-sm);cursor:pointer;text-decoration:none;transition:transform .3s,box-shadow .3s}
+.cc2:hover{transform:scale(1.05);box-shadow:var(--sh-md)}
+.cc2-img{height:142px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background:linear-gradient(135deg,#FFF0F8,#F0EEFF)}
+.cc2-body{padding:10px 12px 14px}
+.cc2-name{font-size:.76rem;font-weight:700;color:var(--ink);margin-bottom:3px;line-height:1.3}
+.cc2-price{font-size:.7rem;color:var(--grape);font-weight:800}
+
+/* ─── TOP 10 ────────────────────────────── */
+.t10{display:flex;flex-direction:column;gap:12px}
+.t10-item{display:flex;align-items:center;gap:17px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;padding:16px 20px;backdrop-filter:blur(20px);box-shadow:var(--sh-sm);cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s,border-color .25s}
+.t10-item:hover{transform:translateX(10px);box-shadow:var(--sh-md);border-color:var(--lav)}
+.rank{width:46px;height:46px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--ff-disp);font-size:1.3rem;font-weight:900}
+.r1{background:linear-gradient(135deg,#FBBF24,#F59E0B);color:white;box-shadow:0 4px 16px rgba(245,158,11,.35)}
+.r2{background:linear-gradient(135deg,#94A3B8,#64748B);color:white}
+.r3{background:linear-gradient(135deg,#CD7F32,#B45309);color:white}
+.rn{background:linear-gradient(135deg,#F0EEFF,#E8DFFF);color:var(--grape)}
+.t10-em{font-size:2.2rem;flex-shrink:0}
+.t10-inf{flex:1}
+.t10-nm{font-family:var(--ff-disp);font-size:.91rem;font-weight:700;color:var(--ink);margin-bottom:2px}
+.t10-ds{font-size:.73rem;color:var(--muted);line-height:1.5}
+.t10-rt{text-align:right;flex-shrink:0}
+.t10-pr{font-family:var(--ff-disp);font-size:.94rem;font-weight:900;color:var(--ink)}
+.t10-st{font-size:.67rem;color:#F59E0B;margin-top:3px}
+
+/* ─── FILTER BAR ────────────────────────── */
+.fbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.fbtn{background:var(--glass);border:1.5px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:var(--r-btn);font-size:.78rem;font-weight:600;transition:all .2s}
+.fbtn:hover,.fbtn.active{background:var(--grad-cta);color:white;border-color:transparent;box-shadow:0 4px 16px rgba(124,77,255,.25)}
+
+/* ─── ABOUT ────────────────────────────── */
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-vis{background:var(--card-bg);border:1.5px solid var(--border);border-radius:32px;padding:48px 36px;text-align:center;backdrop-filter:blur(20px);box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.about-vis::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:var(--blush);opacity:.6;filter:blur(40px);pointer-events:none}
+.av-big{font-size:5rem;display:block;margin-bottom:14px}
+.av-title{font-family:var(--ff-disp);font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+.av-sub{font-size:.79rem;color:var(--muted)}
+.about-tag{font-family:var(--ff-hand);font-size:2.1rem;color:var(--grape);margin-bottom:14px;display:block;line-height:1.2}
+.about-txt{font-size:.87rem;color:var(--muted);line-height:1.82;margin-bottom:12px}
+.afeats{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.afeat{display:flex;align-items:center;gap:10px;font-size:.83rem;color:var(--ink2);font-weight:500}
+.fdot{width:8px;height:8px;border-radius:50%;background:var(--grad-cta);flex-shrink:0}
+
+/* ─── LEGAL ─────────────────────────────── */
+.legal{background:var(--card-bg);border:1.5px solid var(--border);border-radius:28px;padding:clamp(26px,5vw,54px);max-width:820px;margin:0 auto;backdrop-filter:blur(20px);box-shadow:var(--sh-md)}
+.legal h2{font-family:var(--ff-disp);font-size:1.75rem;font-weight:900;color:var(--ink);margin-bottom:5px}
+.legal h3{font-family:var(--ff-disp);font-size:.98rem;font-weight:700;color:var(--grape);margin:22px 0 7px}
+.legal p{font-size:.84rem;color:var(--muted);line-height:1.85;margin-bottom:9px}
+.leg-date{font-size:.72rem;color:var(--muted);margin-bottom:22px;display:block}
+
+/* ─── SHARE STRIP ───────────────────────── */
+.share{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:36px 20px}
+.sbtn{display:flex;align-items:center;gap:9px;padding:12px 24px;border-radius:var(--r-btn);font-size:.83rem;font-weight:700;border:none;transition:transform .2s,box-shadow .2s;text-decoration:none;cursor:pointer}
+.sbtn:hover{transform:translateY(-3px)}
+.sp{background:#E60023;color:white;box-shadow:0 4px 16px rgba(230,0,35,.3)}
+.si{background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);color:white;box-shadow:0 4px 16px rgba(253,29,29,.3)}
+.sw{background:#25D366;color:white;box-shadow:0 4px 16px rgba(37,211,102,.3)}
+
+/* ─── DISCLOSURE STRIP ──────────────────── */
+.disc-strip{background:linear-gradient(135deg,rgba(201,184,255,.12),rgba(255,191,163,.12));border-top:1px solid var(--border);padding:11px 24px;text-align:center;font-size:.71rem;color:var(--muted);line-height:1.6}
+.disc-strip a{color:var(--grape);font-weight:600;cursor:pointer}
+
+/* ─── FOOTER ────────────────────────────── */
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:54px clamp(20px,5vw,72px) 26px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px;max-width:1280px;margin-left:auto;margin-right:auto}
+.f-nm{font-family:var(--ff-disp);font-size:1.55rem;font-weight:900;background:var(--grad-cta);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.f-tg{font-family:var(--ff-hand);font-size:1rem;color:rgba(255,255,255,.35);margin-bottom:13px}
+.f-ds{font-size:.79rem;line-height:1.72;color:rgba(255,255,255,.4);margin-bottom:18px}
+.f-soc{display:flex;gap:10px}
+.fsoc{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;text-decoration:none;transition:all .2s}
+.fsoc:hover{background:var(--grad-cta);border-color:transparent;transform:scale(1.1)}
+.fcol h4{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:13px;text-transform:uppercase;letter-spacing:1px}
+.fcol a{display:block;font-size:.79rem;color:rgba(255,255,255,.38);margin-bottom:8px;cursor:pointer;transition:color .2s}
+.fcol a:hover{color:var(--peach)}
+.fb{max-width:1280px;margin:0 auto;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.72rem;color:rgba(255,255,255,.28)}
+.fb a{color:var(--peach)}
+
+/* Scroll to top */
+.stt{position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:14px;background:var(--grad-cta);color:white;border:none;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(124,77,255,.4);cursor:pointer;z-index:500;opacity:0;transform:translateY(12px);transition:all .3s}
+.stt.show{opacity:1;transform:translateY(0)}
+.stt:hover{transform:scale(1.1)}
+
+/* ─── MOBILE RESPONSIVE ─────────────────── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .search-box{max-width:145px}
+  .search-box input{width:85px}
+  .hero{grid-template-columns:1fr;padding-bottom:56px;gap:32px}
+  .hero-r{grid-template-columns:1fr 1fr;max-width:340px;margin:0 auto}
+  .about-g{grid-template-columns:1fr;gap:26px}
+  .about-vis{order:-1;padding:26px}
+  .av-big{font-size:3.5rem}
+  .fg{grid-template-columns:1fr 1fr;gap:26px}
+  .fb{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){
+  .hero{padding-top:calc(var(--nav-h)+36px)}
+  .hero-r{max-width:270px;gap:10px}
+  .btn-nc{display:none}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .ci{height:158px}
+  .cb{padding:11px 11px 13px}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .fg{grid-template-columns:1fr}
+  section{padding:58px clamp(14px,4vw,22px)}
+  .t10-item{gap:11px;padding:12px 14px}
+  .rank{width:38px;height:38px;font-size:1rem}
+  body{cursor:auto}
+  #cur,#curR{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- ══════════════════════════════════
+     NAVIGATION
+══════════════════════════════════ -->
+<nav id="Nav">
+  <div class="nav-logo">
+    <span class="nav-logo-main">edtholi</span>
+    <span class="nav-logo-tag">Take it, it's yours.</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')">Home</a></li>
+    <li><a onclick="goTo('trending')">Trending</a></li>
+    <li><a onclick="goTo('categories')">Categories</a></li>
+    <li><a onclick="goTo('toppicks')">Top Picks</a></li>
+    <li><a onclick="goTo('about')">About</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="search-box">
+      <span>🔍</span>
+      <input id="searchQ" type="text" placeholder="Search…" oninput="doSearch(this.value)">
+    </div>
+    <button class="btn-nc" onclick="goTo('trending')">🔥 Shop Now</button>
+    <div class="ham" id="ham" onclick="toggleMob()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile overlay -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-cls" onclick="toggleMob()">✕</button>
+  <a onclick="goTo('home');toggleMob()">Home</a>
+  <a onclick="goTo('trending');toggleMob()">Trending</a>
+  <a onclick="goTo('categories');toggleMob()">Categories</a>
+  <a onclick="goTo('toppicks');toggleMob()">Top Picks</a>
+  <a onclick="goTo('about');toggleMob()">About</a>
+  <a onclick="goTo('privacy');toggleMob()">Privacy</a>
+  <a onclick="goTo('disclosure');toggleMob()">Disclosure</a>
+</div>
+
+<!-- Page tab bar -->
+<div class="ptabs" id="ptabs">
+  <button class="ptab" onclick="goTo('home')">🏠 Home</button>
+  <button class="ptab" onclick="goTo('trending')">🔥 Trending</button>
+  <button class="ptab" onclick="goTo('categories')">📦 Categories</button>
+  <button class="ptab" onclick="goTo('toppicks')">🏆 Top Picks</button>
+  <button class="ptab" onclick="goTo('about')">💜 About</button>
+  <button class="ptab" onclick="goTo('privacy')">🔒 Privacy</button>
+  <button class="ptab" onclick="goTo('disclosure')">📋 Disclosure</button>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════ -->
+<div class="page active" id="p-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+
+    <div class="hero-l">
+      <div class="eyebrow"><span class="dot-live"></span> Updated daily · 500+ finds</div>
+      <h1>Trending Amazon<br>Finds You'll <em>Love</em></h1>
+      <p class="hero-sub">Discover viral gadgets, aesthetic home items, and everyday essentials — curated for people with great taste.</p>
+      <div class="hero-btns">
+        <a class="btn-p" onclick="goTo('trending')">✨ Explore Products</a>
+        <a class="btn-o" onclick="goTo('toppicks')">🏆 Top 10 Picks</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">500+</div><div class="l">Curated Finds</div></div>
+        <div class="stat"><div class="n">50K+</div><div class="l">Happy Shoppers</div></div>
+        <div class="stat"><div class="n">Daily</div><div class="l">New Drops</div></div>
+        <div class="stat"><div class="n">4.9★</div><div class="l">Avg Rating</div></div>
+      </div>
+    </div>
+
+    <div class="hero-r">
+      <span class="h-float">🔥 Trending Now</span>
+      <div class="hc" onclick="azon('B0CHX1QBCH')"><div class="e">🌌</div><div class="nm">Star Projector</div><div class="pr">₹999</div></div>
+      <div class="hc" onclick="azon('B08G5PTCRH')"><div class="e">💎</div><div class="nm">Gua Sha Set</div><div class="pr">₹549</div></div>
+      <div class="hc" onclick="azon('B09WDBRLTH')"><div class="e">🍵</div><div class="nm">Matcha Kit</div><div class="pr">₹649</div></div>
+      <div class="hc" onclick="azon('B0C2XVYS4P')"><div class="e">🌅</div><div class="nm">Sunrise Lamp</div><div class="pr">₹2,199</div></div>
+    </div>
+  </div>
+
+  <!-- TRENDING NOW -->
+  <section class="rv">
+    <div class="sec-lbl">🔥 Going Viral</div>
+    <h2 class="sec-t">Trending <em>Now</em></h2>
+    <p class="sec-s">The internet can't stop talking about these — get them before they sell out.</p>
+    <div class="pgrid mason" id="homeGrid"></div>
+  </section>
+
+  <!-- VIRAL FINDS CAROUSEL -->
+  <div style="background:var(--grad-hero);padding:40px 0 56px">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,72px) 20px" class="rv">
+      <div class="sec-lbl">📌 Pinterest Vibes</div>
+      <h2 class="sec-t">Viral <em>Finds</em></h2>
+      <p class="sec-s">Spotted on TikTok, pinned on Pinterest — now available on Amazon.</p>
+    </div>
+    <div class="car-outer">
+      <div class="car-track" id="carTrack"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="rv">
+    <div class="sec-lbl">📦 Browse by Vibe</div>
+    <h2 class="sec-t">Aesthetic <em>Categories</em></h2>
+    <p class="sec-s">Every vibe, every budget. All on Amazon.</p>
+    <div class="cgrid" id="homeCats"></div>
+  </section>
+
+  <!-- SOCIAL SHARE -->
+  <div class="share rv">
+    <a class="sbtn sp" href="https://pinterest.com" target="_blank" rel="noopener">📌 Pinterest</a>
+    <a class="sbtn si" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
+    <a class="sbtn sw" href="https://wa.me/?text=Check%20out%20edtholi.com%20for%20viral%20Amazon%20finds!" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ══════════════════════════════════
+     PAGE: TRENDING PRODUCTS
+══════════════════════════════════ -->
+<div class="page" id="p-trending">
+  <section>
+    <div class="sec-lbl">🛍️ All Products</div>
+    <h2 class="sec-t">Trending <em>Products</em></h2>
+    <p class="sec-s">Filter by category and find your next favourite Amazon drop.</p>
+    <div class="fbar" id="fbar">
+      <button class="fbtn active" onclick="filt('All')">✨ All</button>
+      <button class="fbtn" onclick="filt('Tech')">📱 Tech</button>
+      <button class="fbtn" onclick="filt('Decor')">🌸 Room Decor</button>
+      <button class="fbtn" onclick="filt('Beauty')">💄 Beauty</button>
+      <button class="fbtn" onclick="filt('Kitchen')">🧋 Kitchen</button>
+      <button class="fbtn" onclick="filt('Fitness')">🏋️ Fitness</button>
+      <button class="fbtn" onclick="filt('Gifts')">🎁 Gifts</button>
+    </div>
+    <div class="pgrid" id="trendGrid"></div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: CATEGORIES
+══════════════════════════════════ -->
+<div class="page" id="p-categories">
+  <section>
+    <div class="sec-lbl">📦 Shop By Category</div>
+    <h2 class="sec-t">All <em>Categories</em></h2>
+    <p class="sec-s">Tap a category to explore its full collection.</p>
+    <div class="cgrid" id="catPageGrid"></div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: TOP PICKS
+══════════════════════════════════ -->
+<div class="page" id="p-toppicks">
+  <section>
+    <div class="sec-lbl">🏆 Editor's Choice</div>
+    <h2 class="sec-t">Top 10 <em>Amazon Finds</em></h2>
+    <p class="sec-s">Hand-picked, highest-rated, best value — the ultimate edtholi list.</p>
+    <div class="t10" id="t10"></div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: ABOUT
+══════════════════════════════════ -->
+<div class="page" id="p-about">
+  <section>
+    <div class="about-g">
+      <div>
+        <div class="sec-lbl">💜 Our Story</div>
+        <span class="about-tag">Take it, it's yours.</span>
+        <h2 class="sec-t" style="margin-bottom:16px">We scroll so<br><em>you don't have to</em></h2>
+        <p class="about-txt">edtholi is a product discovery platform built by and for Gen-Z. We spend hours curating the most viral Amazon India finds — so when you land here, every single product is already worth your attention.</p>
+        <p class="about-txt">No ads, no fluff. Just genuinely good stuff, fairly priced, with real ratings from real Amazon shoppers.</p>
+        <div class="afeats">
+          <div class="afeat"><span class="fdot"></span>Updated daily — fresh drops every morning</div>
+          <div class="afeat"><span class="fdot"></span>Only 4+ star products make the cut</div>
+          <div class="afeat"><span class="fdot"></span>All budgets — ₹199 to ₹9,999 and beyond</div>
+          <div class="afeat"><span class="fdot"></span>All links go directly to Amazon India</div>
+          <div class="afeat"><span class="fdot"></span>Mobile-first for Pinterest & Instagram visitors</div>
+        </div>
+      </div>
+      <div class="about-vis">
+        <span class="av-big">✨</span>
+        <div class="av-title">Curated with love</div>
+        <div class="av-sub">500+ products · Daily drops · 50K+ shoppers</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: PRIVACY POLICY
+══════════════════════════════════ -->
+<div class="page" id="p-privacy">
+  <section>
+    <div class="legal">
+      <h2>🔒 Privacy Policy</h2>
+      <span class="leg-date">Last updated: January 2025</span>
+      <p>At edtholi.com, your privacy matters. This policy explains how we handle information when you visit our site.</p>
+      <h3>Information We Collect</h3>
+      <p>We collect anonymised analytics (page views, clicks) via third-party tools. We do not collect personally identifiable information unless you voluntarily provide it.</p>
+      <h3>Cookies</h3>
+      <p>We use cookies to improve performance and analytics. You may disable cookies in your browser, though this may limit some functionality.</p>
+      <h3>Third-Party Links</h3>
+      <p>Our site links to Amazon India. Purchases through affiliate links are governed by Amazon's own privacy policy.</p>
+      <h3>Data Security</h3>
+      <p>We use industry-standard measures to protect site data. We do not sell or trade user information to any third party.</p>
+      <h3>Contact</h3>
+      <p>Reach us through Instagram or Pinterest — we respond to every message.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: AFFILIATE DISCLOSURE
+══════════════════════════════════ -->
+<div class="page" id="p-disclosure">
+  <section>
+    <div class="legal">
+      <h2>📋 Amazon Affiliate Disclosure</h2>
+      <span class="leg-date">Last updated: January 2025</span>
+      <p><strong>edtholi.com is a participant in the Amazon Associates Programme</strong> — an affiliate advertising programme that enables sites to earn fees by linking to Amazon.in.</p>
+      <h3>How It Works</h3>
+      <p>When you click "View on Amazon" and make a purchase, we earn a small commission at zero additional cost to you. You pay the exact same price Amazon displays.</p>
+      <h3>Our Editorial Independence</h3>
+      <p>Commission potential never influences what we feature. We curate based on ratings, trends, and real value. If we wouldn't buy it ourselves, it won't appear on edtholi.</p>
+      <h3>Transparency</h3>
+      <p>This disclosure is displayed site-wide in compliance with FTC and ASCI guidelines. We believe in honest affiliate marketing.</p>
+      <h3>Questions?</h3>
+      <p>Reach us via Instagram DMs or our Pinterest page — we reply to every query.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     GLOBAL: DISCLOSURE STRIP
+══════════════════════════════════ -->
+<div class="disc-strip">
+  🛒 As an Amazon Associate, edtholi.com earns from qualifying purchases. Prices & availability subject to change. &nbsp;
+  <a onclick="goTo('disclosure')">Full Disclosure →</a>
+</div>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="fg">
+    <div>
+      <div class="f-nm">edtholi</div>
+      <div class="f-tg">Take it, it's yours.</div>
+      <p class="f-ds">Your daily dose of trending Amazon finds — curated for Gen-Z shoppers who want the best without the scroll.</p>
+      <div class="f-soc">
+        <a class="fsoc" href="https://pinterest.com" target="_blank" rel="noopener" title="Pinterest">📌</a>
+        <a class="fsoc" href="https://instagram.com" target="_blank" rel="noopener" title="Instagram">📸</a>
+        <a class="fsoc" href="https://wa.me/?text=Check%20edtholi.com!" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4>Discover</h4>
+      <a onclick="goTo('home')">Home</a>
+      <a onclick="goTo('trending')">Trending Now</a>
+      <a onclick="goTo('categories')">Categories</a>
+      <a onclick="goTo('toppicks')">Top 10 Picks</a>
+    </div>
+    <div class="fcol">
+      <h4>Shop By</h4>
+      <a onclick="goTo('trending');filt('Tech')">Tech & Gadgets</a>
+      <a onclick="goTo('trending');filt('Beauty')">Beauty & Self Care</a>
+      <a onclick="goTo('trending');filt('Decor')">Room Decor</a>
+      <a onclick="goTo('trending');filt('Gifts')">Gift Ideas</a>
+    </div>
+    <div class="fcol">
+      <h4>Info</h4>
+      <a onclick="goTo('about')">About edtholi</a>
+      <a onclick="goTo('privacy')">Privacy Policy</a>
+      <a onclick="goTo('disclosure')">Affiliate Disclosure</a>
+    </div>
+  </div>
+  <div class="fb">
+    <span>© edtholi.com · All rights reserved</span>
+    <span>As an Amazon Associate, we earn from qualifying purchases.</span>
+    <span>Built with 💜 for Gen-Z</span>
+  </div>
+</footer>
+
+<button class="stt" id="stt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+/* ── PRODUCTS DATA ─────────────────── */
+const PRODS = [
+  {id:'B0CHX1QBCH',name:'Galaxy Star Projector',    desc:'Transform your ceiling into a dreamy galaxy ✨ TikTok made everyone buy this.',   price:'₹999',  rat:4.7,rev:'12.4K',cat:'Decor',  em:'🌌',b:'v',bl:'🔥 Viral'},
+  {id:'B09G9FPHY6',name:'Mini Wireless Speaker',    desc:'Crystal-clear sound in a pocket-sized body. Take the party anywhere!',           price:'₹1,299',rat:4.5,rev:'8.2K', cat:'Tech',   em:'🔊',b:'n',bl:'⚡ New'},
+  {id:'B08G5PTCRH',name:'Gua Sha Facial Set',       desc:'Korean beauty secret for glowing, sculpted skin in 5 minutes 💆',               price:'₹549',  rat:4.8,rev:'23K',  cat:'Beauty', em:'💎',b:'l',bl:'💜 Loved'},
+  {id:'B0CJXF94KK',name:'Retro Lava Lamp',          desc:'Groovy pastel vibes for your desk or bedside. Instant aesthetic upgrade.',       price:'₹799',  rat:4.6,rev:'5.7K', cat:'Decor',  em:'🫧',b:'v',bl:'🔥 Viral'},
+  {id:'B09WDBRLTH',name:'Premium Matcha Kit',       desc:'Barista-grade matcha at home. Pinterest café goals fully unlocked ☕',          price:'₹649',  rat:4.9,rev:'31K',  cat:'Kitchen',em:'🍵',b:'t',bl:'🏆 Top'},
+  {id:'B0C8T3FKZP',name:'Resistance Band Set',      desc:'5-level home gym that fits in your bag. Literally no excuses now 💪',           price:'₹499',  rat:4.7,rev:'19K',  cat:'Fitness',em:'🏋️',b:'v',bl:'🔥 Viral'},
+  {id:'B0BD4L7CNG',name:'Pressed Flower Phone Case',desc:'Botanical aesthetic for iPhone & Android. Compliments guaranteed 🌸',          price:'₹349',  rat:4.6,rev:'7.8K', cat:'Tech',   em:'🌸',b:'n',bl:'⚡ New'},
+  {id:'B0C2XVYS4P',name:'Sunrise Alarm Clock',      desc:'Wake up to a simulated sunrise. Peaceful, natural, and incredibly aesthetic.',  price:'₹2,199',rat:4.8,rev:'4.5K', cat:'Decor',  em:'🌅',b:'l',bl:'💜 Loved'},
+  {id:'B0BYQ9FJSF',name:'Bubble Foam Cleanser',     desc:'The most satisfying skincare step of your entire routine 🫧',                  price:'₹399',  rat:4.7,rev:'16K',  cat:'Beauty', em:'🫧',b:'v',bl:'🔥 Viral'},
+  {id:'B0C3H7YVZP',name:'Mini Blender Bottle',      desc:'Smoothies on-the-go in 30 seconds. No mess, maximum gains 🥤',                 price:'₹899',  rat:4.5,rev:'9.3K', cat:'Kitchen',em:'🥤',b:'n',bl:'⚡ New'},
+  {id:'B0BQ4X1L85',name:'Premium Yoga Mat',         desc:'Extra-thick, anti-slip mat for every flow, stretch, and session 🧘',           price:'₹1,499',rat:4.8,rev:'22K',  cat:'Fitness',em:'🧘',b:'t',bl:'🏆 Top'},
+  {id:'B0CF67BQZP',name:'LED Neon Sign Light',      desc:'Customisable glow for your room — most-shared decor on Instagram 💡',         price:'₹1,799',rat:4.6,rev:'3.9K', cat:'Decor',  em:'💡',b:'v',bl:'🔥 Viral'},
+  {id:'B09VXYZ123',name:'Scented Soy Candle Set',   desc:'3 aesthetic fragrances — vanilla, sandalwood, jasmine. Gift-perfect 🕯️',     price:'₹699',  rat:4.8,rev:'11K',  cat:'Gifts',  em:'🕯️',b:'l',bl:'💜 Loved'},
+  {id:'B09ABC4561',name:'Gold Hoop Earring Pack',   desc:'Minimalist gold hoops in 3 sizes. Every outfit, instantly elevated ✨',        price:'₹299',  rat:4.7,rev:'18K',  cat:'Beauty', em:'💛',b:'t',bl:'🏆 Top'},
+  {id:'B09QWERT22',name:'Portable Neck Fan',        desc:'Hands-free summer cooling. Viral on TikTok for very good reason 🌬️',         price:'₹899',  rat:4.5,rev:'14K',  cat:'Tech',   em:'🌬️',b:'v',bl:'🔥 Viral'},
+  {id:'B0GIFT0001',name:'Cute Stationery Set',       desc:'Aesthetic pens, sticky notes & washi tape. The best gift ever 📚',            price:'₹449',  rat:4.9,rev:'9.7K', cat:'Gifts',  em:'📚',b:'l',bl:'💜 Loved'},
+];
+
+const TOP10 = [
+  {rank:1, em:'🌌',name:'Galaxy Star Projector',    desc:'The room-transformation hack the entire internet is obsessed with',    price:'₹999',  st:'★★★★★',id:'B0CHX1QBCH'},
+  {rank:2, em:'🍵',name:'Premium Matcha Kit',        desc:'Pinterest kitchen staple — highest rated in its entire category',     price:'₹649',  st:'★★★★★',id:'B09WDBRLTH'},
+  {rank:3, em:'💎',name:'Gua Sha Facial Set',        desc:'Korean skincare ritual loved by millions worldwide',                   price:'₹549',  st:'★★★★★',id:'B08G5PTCRH'},
+  {rank:4, em:'🌅',name:'Sunrise Alarm Clock',       desc:'The most peaceful wake-up experience money can buy',                  price:'₹2,199',st:'★★★★★',id:'B0C2XVYS4P'},
+  {rank:5, em:'🧘',name:'Premium Yoga Mat',          desc:"Best under ₹1,500 — fitness creators' unanimous top recommendation",  price:'₹1,499',st:'★★★★★',id:'B0BQ4X1L85'},
+  {rank:6, em:'🫧',name:'Bubble Foam Cleanser',      desc:'TikTok made everyone buy this — and they were absolutely right',      price:'₹399',  st:'★★★★½',id:'B0BYQ9FJSF'},
+  {rank:7, em:'🔊',name:'Mini Wireless Speaker',     desc:'Tiny but mighty — your new travel and dorm companion',                price:'₹1,299',st:'★★★★½',id:'B09G9FPHY6'},
+  {rank:8, em:'💡',name:'LED Neon Sign Light',       desc:'Most-shared room decor on Instagram — for very good reason',          price:'₹1,799',st:'★★★★½',id:'B0CF67BQZP'},
+  {rank:9, em:'🏋️',name:'Resistance Band Set',       desc:'Complete body workout without ever leaving your bedroom',             price:'₹499',  st:'★★★★½',id:'B0C8T3FKZP'},
+  {rank:10,em:'🕯️',name:'Scented Soy Candle Set',   desc:'Gift-ready trio — sandalwood, vanilla & jasmine perfection',          price:'₹699',  st:'★★★★★',id:'B09VXYZ123'},
+];
+
+const CATS = [
+  {key:'Tech',  cls:'cp', icon:'📱', name:'Tech & Gadgets',        n:48},
+  {key:'Decor', cls:'cg', icon:'🌸', name:'Aesthetic Room Decor',   n:62},
+  {key:'Beauty',cls:'cc', icon:'💄', name:'Beauty & Self Care',     n:85},
+  {key:'Kitchen',cls:'cm',icon:'🧋', name:'Kitchen Must-Haves',     n:37},
+  {key:'Fitness',cls:'cs',icon:'🏋️', name:'Fitness & Wellness',    n:44},
+  {key:'Gifts', cls:'cb2',icon:'🎁', name:'Gift Ideas',             n:56},
+];
+
+const TAG = 'edtholi-21';
+function url(id){return`https://www.amazon.in/dp/${id}/?tag=${TAG}`}
+function azon(id){window.open(url(id),'_blank','noopener')}
+
+/* ── CARD HTML ──────────────────── */
+function cardH(p){
+  const s='★'.repeat(Math.floor(p.rat))+(p.rat%1>=.5?'½':'');
+  const bc={v:'bv',n:'bn',l:'bl',t:'bt'}[p.b]||'';
+  return`<div class="pcard rv" onclick="azon('${p.id}')">
+    ${p.b?`<div class="pbadge ${bc}">${p.bl}</div>`:''}
+    <div class="ci"><div class="ci-inner">${p.em}</div></div>
+    <div class="cb">
+      <div class="ccat">${p.cat}</div>
+      <div class="cname">${p.name}</div>
+      <div class="cdesc">${p.desc}</div>
+      <div class="cmeta">
+        <div><span class="stars">${s}</span><span class="rtext">(${p.rev})</span></div>
+        <div class="cprice">${p.price}</div>
+      </div>
+      <a class="btn-amz" href="${url(p.id)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🛒 View on Amazon</a>
+    </div>
+  </div>`;
+}
+
+function catH(c,page){
+  return`<a class="ccard ${c.cls} rv" onclick="goTo('${page||'trending'}');filt('${c.key}')">
+    <span class="ci2">${c.icon}</span>
+    <div class="cname2">${c.name}</div>
+    <div class="ccount">${c.n} products</div>
+  </a>`;
+}
+
+function carH(p){
+  return`<a class="cc2" href="${url(p.id)}" target="_blank" rel="noopener">
+    <div class="cc2-img">${p.em}</div>
+    <div class="cc2-body"><div class="cc2-name">${p.name}</div><div class="cc2-price">${p.price}</div></div>
+  </a>`;
+}
+
+function top10H(x){
+  const rc=x.rank<=3?`r${x.rank}`:'rn';
+  const rl=x.rank<=3?['🥇','🥈','🥉'][x.rank-1]:`#${x.rank}`;
+  return`<a class="t10-item rv" href="${url(x.id)}" target="_blank" rel="noopener">
+    <div class="rank ${rc}">${rl}</div>
+    <div class="t10-em">${x.em}</div>
+    <div class="t10-inf"><div class="t10-nm">${x.name}</div><div class="t10-ds">${x.desc}</div></div>
+    <div class="t10-rt"><div class="t10-pr">${x.price}</div><div class="t10-st">${x.st}</div></div>
+  </a>`;
+}
+
+/* ── RENDER ─────────────────────── */
+function renderGrid(id,items){
+  const el=document.getElementById(id);
+  if(el)el.innerHTML=items.map(cardH).join('');
+  initRv();
+}
+function renderCats(id,page){
+  const el=document.getElementById(id);
+  if(el)el.innerHTML=CATS.map(c=>catH(c,page)).join('');
+  initRv();
+}
+function renderCar(){
+  const t=document.getElementById('carTrack');
+  if(!t)return;
+  const d=[...PRODS,...PRODS];
+  t.innerHTML=d.map(carH).join('');
+}
+function renderT10(){
+  const el=document.getElementById('t10');
+  if(el)el.innerHTML=TOP10.map(top10H).join('');
+  initRv();
+}
+
+/* ── FILTER ─────────────────────── */
+let curFilt='All';
+function filt(cat){
+  curFilt=cat;
+  document.querySelectorAll('.fbtn').forEach(b=>{
+    b.classList.toggle('active',
+      (cat==='All'&&b.textContent.includes('All'))||b.textContent.toLowerCase().includes(cat.toLowerCase()));
+  });
+  const res=cat==='All'?PRODS:PRODS.filter(p=>p.cat===cat);
+  renderGrid('trendGrid',res);
+}
+
+/* ── SEARCH ─────────────────────── */
+function doSearch(q){
+  if(!q.trim()){renderGrid('trendGrid',PRODS);return}
+  const l=q.toLowerCase();
+  const r=PRODS.filter(p=>p.name.toLowerCase().includes(l)||p.desc.toLowerCase().includes(l)||p.cat.toLowerCase().includes(l));
+  goTo('trending');
+  renderGrid('trendGrid',r);
+}
+
+/* ── PAGE NAV ───────────────────── */
+let curPage='home';
+function goTo(pg){
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  const el=document.getElementById('p-'+pg);
+  if(el){el.classList.add('active');curPage=pg}
+
+  const tb=document.getElementById('ptabs');
+  tb.classList.toggle('show',pg!=='home');
+
+  document.querySelectorAll('.ptab').forEach((b,i)=>{
+    const pages=['home','trending','categories','toppicks','about','privacy','disclosure'];
+    b.classList.toggle('active',pages[i]===pg);
+  });
+
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  if(pg==='trending')renderGrid('trendGrid',PRODS);
+  if(pg==='toppicks')renderT10();
+  if(pg==='categories')renderCats('catPageGrid','trending');
+}
+
+/* ── MOBILE MENU ────────────────── */
+function toggleMob(){document.getElementById('mobNav').classList.toggle('open')}
+
+/* ── SCROLL ─────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('Nav').classList.toggle('sc',scrollY>20);
+  document.getElementById('stt').classList.toggle('show',scrollY>400);
+});
+
+/* ── SCROLL REVEAL ──────────────── */
+function initRv(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+  },{threshold:.07});
+  document.querySelectorAll('.rv:not(.in)').forEach(el=>obs.observe(el));
+}
+
+/* ── CUSTOM CURSOR ──────────────── */
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+// Smooth ring follow
+(function loop(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  curR.style.left=rx+'px';curR.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+
+function addHov(sel){
+  document.querySelectorAll(sel).forEach(el=>{
+    if(el.dataset.ch)return;el.dataset.ch='1';
+    el.addEventListener('mouseenter',()=>{cur.classList.add('h');curR.classList.add('h')});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('h');curR.classList.remove('h')});
+  });
+}
+addHov('a,button,.pcard,.ccard,.hc,.t10-item,.cc2');
+// Re-attach after renders
+const origGoTo=goTo;
+
+/* ── INIT ───────────────────────── */
+renderGrid('homeGrid',PRODS.slice(0,8));
+renderCar();
+renderGrid('trendGrid',PRODS);
+renderCats('homeCats','trending');
+renderCats('catPageGrid','trending');
+initRv();
+
+// Delayed re-attach cursor hover on dynamic elements
+document.addEventListener('click',()=>setTimeout(()=>addHov('a,button,.pcard,.ccard,.hc,.t10-item,.cc2'),200));
+</script>
+
+</body>
+</html>
